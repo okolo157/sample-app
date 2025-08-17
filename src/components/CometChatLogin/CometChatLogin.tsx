@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "../../styles//CometChatLogin/CometChatLogin.css";
 import { useNavigate } from "react-router-dom";
-
+import cometChatLogo from "../../assets/cometchat_logo.svg";
+import cometChatLogoDark from "../../assets/cometchat_logo_dark.svg";
 import {
   CometChatUIKit,
   CometChatUIKitLoginListener,
@@ -24,6 +25,9 @@ const CometChatLogin = () => {
   const [uid, setUid] = useState("");
   const [selectedUid, setSelectedUid] = useState("");
   const navigate = useNavigate();
+  const isDarkMode = document.querySelector('[data-theme="dark"]')
+    ? true
+    : false;
 
   function hasCredentials() {
     const appID: string =
@@ -132,14 +136,16 @@ const CometChatLogin = () => {
 
   return (
     <div className="cometchat-login__container">
+      <div className="cometchat-login__logo">
+        <div className="cometchat-login__title">
+          Sign in to New Hope Channel
+        </div>
+      </div>
       <div className="cometchat-login__content">
         <div className="cometchat-login__header">
-          <div className="cometchat-login__title">
-            Sign in to New Hope Channel
-          </div>
           <div className="cometchat-login__sample-users">
             <div className="cometchat-login__sample-users-title">
-              Using our sample users
+              click any of the sample users
             </div>
             <div className="cometchat-login__user-list">
               {defaultUsers.map(getUserBtnWithKeyAdded)}
